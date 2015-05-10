@@ -17,10 +17,28 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('email')->unique();
-			$table->string('password', 60);
 			$table->rememberToken();
 			$table->timestamps();
 		});
+
+		Schema::create('contributers', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('user_id')->unsigned();
+			$table->string('password', 60);
+			$table->boolean('admin');
+
+			$table->foreign('user_id')->references('id')->on('users');
+		});
+
+		Schema::create('viewers', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('user_id');
+
+			$table->foreign('user_id')->references('id')->on('users');
+		});
+
 	}
 
 	/**
@@ -31,6 +49,8 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::drop('users');
+		Schema::drop('contributers');
+		Schema::drop('viewers');
 	}
 
 }
