@@ -21,22 +21,18 @@ class CreateUsersTable extends Migration {
 			$table->timestamps();
 		});
 
-		Schema::create('contributers', function(Blueprint $table)
+		Schema::create('users_contributors', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned();
 			$table->string('password', 60);
 			$table->boolean('admin');
 
-			$table->foreign('user_id')->references('id')->on('users');
 		});
 
-		Schema::create('viewers', function(Blueprint $table)
+		Schema::create('users_viewers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
 
-			$table->foreign('user_id')->references('id')->on('users');
 		});
 
 	}
@@ -49,8 +45,8 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::drop('users');
-		Schema::drop('contributers');
-		Schema::drop('viewers');
+		Schema::drop('users_contributors');
+		Schema::drop('users_viewers');
 	}
 
 }
