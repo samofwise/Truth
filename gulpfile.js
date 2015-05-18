@@ -12,5 +12,22 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
+    mix.less('app.less')
+
+        .copy("vendor/bower_components/semantic-ui/output/build/dist/semantic.css", "public/css/vendor/semantic.css")
+        .copy("vendor/bower_components/semantic-ui/output/build/dist/semantic.js", "public/js/vendor/semantic.js")
+        .copy("vendor/bower_components/semantic-ui/output/css/themes", "public/css/themes")
+        .styles([
+            "vendor/semantic.css"
+
+        ], "public/css/all.css", "public/css")
+        .scriptsIn("public/js")
+        .version([
+            "css/all.css",
+            "js/all.js"
+        ])
+
+    ;
+
+
 });

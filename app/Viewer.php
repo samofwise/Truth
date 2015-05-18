@@ -1,15 +1,13 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 
 class Viewer extends User {
 
-    protected $table = "users_viewers";
-
-    public function user()
+	public function __construct(array $attributes)
     {
-        return $this->morphOne('User', 'userable');
+        $attributes['contributor'] = false;
+        parent::__construct($attributes);
     }
 
 }

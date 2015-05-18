@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+////TODO Delete Page
+
 class WelcomeController extends Controller {
 
 	/*

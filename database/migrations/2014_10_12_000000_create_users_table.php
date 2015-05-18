@@ -14,27 +14,26 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function(Blueprint $table)
 		{
+            //User
 			$table->increments('id');
+            $table->rememberToken();
+            $table->timestamps();
+            //Fillable
+            $table->string('displayName');
+            $table->string('email')->unique();
+            $table->boolean('contributor');
+
+            //Contributor
+            $table->boolean('admin');
+            //Fillable
 			$table->string('name');
-			$table->string('email')->unique();
-			$table->rememberToken();
-			$table->timestamps();
-		});
+            $table->string('password', 60);
 
-		Schema::create('users_contributors', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string('password', 60);
-			$table->boolean('admin');
+
+            //Viewer
+            $table->boolean('blockedViewer');
 
 		});
-
-		Schema::create('users_viewers', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-		});
-
 	}
 
 	/**
@@ -45,8 +44,6 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::drop('users');
-		Schema::drop('users_contributors');
-		Schema::drop('users_viewers');
 	}
 
 }
