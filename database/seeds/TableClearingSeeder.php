@@ -10,8 +10,12 @@ class TableClearingSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('posts')->delete();
-        DB::table('users')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
+        DB::table('tags')->truncate();
+        DB::table('posts')->truncate();
+        DB::table('users')->truncate();
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
