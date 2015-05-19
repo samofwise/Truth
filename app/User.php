@@ -36,7 +36,7 @@ abstract class User extends Model implements AuthenticatableContract, CanResetPa
     {
         return $this->hasMany('App\Post');
     }
-  }
+
 }
 
 
