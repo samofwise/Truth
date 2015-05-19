@@ -2,13 +2,13 @@
 
 class Contributor extends User {
 
-    private $parent = [];
     protected $contributorFillable = ['name','password'];
+    private $parent = [];
 
     /**
      * @param array $attributes
      */
-    public function __construct(array $attributes)
+    public function __construct(array $attributes = array())
     {
         $this->fillable = array_merge($this->fillable, $this->contributorFillable);
         $attributes['contributor'] = true;

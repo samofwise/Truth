@@ -3,18 +3,14 @@
 use App\Contributor;
 use App\Viewer;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class UserTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Seed Users Table
      */
     public function run()
     {
-
-        DB::table('users')->delete();
-
         $faker = Faker\Factory::create();
 
         //Create Contributors
