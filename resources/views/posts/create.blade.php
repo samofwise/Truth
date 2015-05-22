@@ -1,15 +1,12 @@
 @extends('app')
 
 @section('content')
-    <h1 class="header">New Post.</h1>
-    <div class="divider"></div>
-    {!! Form::open(['action' => 'PostsController@store']) !!}
-    <div class="ui form">
+    <div class="ui segment">
+        <h1 class="header">New Post.</h1>
+        <div class="divider"></div>
+        {!! Form::open(['action' => 'PostsController@store']) !!}
         @include('posts._form', ['submitButtonText' => 'Create'])
-
-        {!! Form::submit('Create', ['class' => 'ui submit button']) !!}
+        {!! Form::close() !!}
     </div>
-    {!! Form::close() !!}
-
     @include('errors.list')
 @stop

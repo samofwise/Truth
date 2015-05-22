@@ -5,19 +5,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\Request;
 use App\Post;
+use Auth;
 
 
 class PostsController extends Controller {
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index']);
+        //$this->middleware('auth', ['except' => 'index']);
     }
 
-    public function index()
+    /*public function index()
     {
 
-    }
+    }*/
 
 	public function create()
     {
@@ -51,7 +52,9 @@ class PostsController extends Controller {
      */
     public function store(PostRequest $request)
     {
-        Post::create($request->all());
+        $post = new Post($request->all());
+
+        Auth::user()->posts()->save($post);
 
         return redirect('/');
     }

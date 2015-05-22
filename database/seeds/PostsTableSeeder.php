@@ -2,6 +2,7 @@
 
 use App\Contributor;
 use App\Post;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -15,7 +16,7 @@ class PostsTableSeeder extends Seeder
 
         //Create Posts
         for ($i = 1; $i <= 10; $i++) {
-            Post::create(['title' => $faker->sentence, 'body' => $faker->paragraph, 'user_id' => Contributor::all()->first()->id]);
+            Post::create(['title' => $faker->sentence, 'body' => $faker->paragraph, 'user_id' => User::contributors()->first()->id]);
         }
     }
 }

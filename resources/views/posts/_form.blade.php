@@ -1,13 +1,19 @@
-<div class="two fields">
+<div class="ui form">
+    <div class="field">
+        {!! Form::label('title', 'Title') !!}
+    </div>
     <div class="two fields">
-        <div class="field">
-            {!! Form::label('title', 'Title:') !!}
-            {!! Form::text('title') !!}
+        <div class="two fields">
+            <div class="field">
+                {!! Form::text('title') !!}
+            </div>
         </div>
     </div>
+    <div class="field">
+        {!! Form::label('body', 'Body') !!}
+    </div>
+    <div class="field">
+        {!! Form::textarea('body') !!}
+    </div>
+    {!! Form::submit($submitButtonText, ['class' => 'ui submit button']) !!}
 </div>
-<div class="field">
-    {!! Form::label('body', 'Body') !!}
-    {!! Form::textarea('body') !!}
-</div>
-{!! Form::submit($submitButton, ['class' => 'ui submit button']) !!}

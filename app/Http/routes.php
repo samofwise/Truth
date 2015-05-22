@@ -12,9 +12,10 @@
 */
 
 Route::get('/', 'HomeController@index');
+
 Route::get('posts/create', 'PostsController@create');
-Route::post('posts', 'PostsController@store');
 Route::get('posts/{id}/edit', 'PostsController@edit');
+Route::post('posts', 'PostsController@store');
 Route::patch('posts/{id}', 'PostsController@update');
 
 Route::controllers([

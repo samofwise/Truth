@@ -16,6 +16,7 @@ elixir(function(mix) {
 
         .copy("vendor/bower_components/semantic-ui/output/build/dist/semantic.css", "public/css/vendor/semantic.css")
         .copy("vendor/bower_components/semantic-ui/output/build/dist/semantic.js", "public/js/vendor/semantic.js")
+        .copy("vendor/bower_components/jquery/dist/jquery.js", "public/js/vendor/jquery.js")
         .copy("vendor/bower_components/semantic-ui/output/css/themes", "public/css/themes")
         .styles([
             "vendor/semantic.css"

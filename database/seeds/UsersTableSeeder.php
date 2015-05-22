@@ -1,6 +1,7 @@
 <?php
 
 use App\Contributor;
+use App\User;
 use App\Viewer;
 use Illuminate\Database\Seeder;
 
@@ -14,19 +15,24 @@ class UsersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         //Create Contributors
+        User::createContributor(['name' => 'contrib', 'displayName' => $faker->firstNameMale, 'email' => 'contrib@truth.com', 'password' => bcrypt('password')]);
         for ($i = 1; $i <= 5; $i++) {
-            Contributor::create(['name' => $faker->name, 'displayName' => $faker->firstNameMale, 'email' => $faker->email, 'password' => bcrypt('password')]);
+            User::createContributor(['name' => $faker->name, 'displayName' => $faker->firstNameMale, 'email' => $faker->email, 'password' => bcrypt('password')]);
         }
 
 
         //Create Admins
+        User::createContributor(['name' => 'admin', 'displayName' => $faker->firstNameMale, 'email' => 'admin@truth.com', 'password' => bcrypt('password'), 'admin' => true]);
+
         for ($i = 1; $i <= 5; $i++) {
-            Contributor::create(['name' => $faker->name, 'displayName' => $faker->firstNameMale, 'email' => $faker->email, 'password' => bcrypt('password'), 'admin' => true]);
+            User::createContributor(['name' => $faker->name, 'displayName' => $faker->firstNameMale, 'email' => $faker->email, 'password' => bcrypt('password'), 'admin' => true]);
         }
 
+
         //Create Viewers
+        User::createViewer(['displayName' => $faker->firstNameMale, 'email' => 'viewer@truth.com']);
         for ($i = 1; $i <= 5; $i++) {
-            Viewer::create(['displayName' => $faker->firstNameMale, 'email' => $faker->email]);
+            Viewer::createViewer(['displayName' => $faker->firstNameMale, 'email' => $faker->email]);
         }
     }
 }

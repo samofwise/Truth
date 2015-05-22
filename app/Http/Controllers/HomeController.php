@@ -34,7 +34,7 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-        $posts = Post::latest()->get();
+        $posts = Post::all();
 
 		return view('home', compact('posts'));
 	}
