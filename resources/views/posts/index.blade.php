@@ -2,7 +2,9 @@
 
 @section('content')
     <h1 class="header">Posts</h1>
-    <div class="primary button">Create</div>
+    <a href="{{action('PostsController@create')}}">
+        <div class="ui right floated primary icon button"><i class="plus icon"></i>Create</div>
+    </a>
     <table class="ui table">
         <thead>
         <tr>
@@ -11,28 +13,37 @@
             <th>Created</th>
             <th>Updated</th>
             <th>Tags</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>John Lilki</td>
-            <td>September 14, 2013</td>
-            <td>jhlilk22@yahoo.com</td>
-            <td>No</td>
-        </tr>
-        <tr>
-            <td>Jamie Harington</td>
-            <td>January 11, 2014</td>
-            <td>jamieharingonton@yahoo.com</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>Jill Lewis</td>
-            <td>May 11, 2014</td>
-            <td>jilsewris22@yahoo.com</td>
-            <td>Yes</td>
-        </tr>
+        @if(count($posts))
+            @foreach($posts as $post)
+                <tr>
+                    <td>{{$post->title}}</td>
+                    <td>{{$post->user()->displayName}}</td>
+                    <td>{{$post->created_at}}/td>
+                    <td>{{$post->updated_at}}</td>
+                    <td>
+                        @if(count($post->tags()))
+                            @foreach($post->tags() as $tag)
+
+                            @endforeach
+                        @else
+                            No Tags
+                        @endif
+                    </td>
+                    <td>
+                        <a class="deleteButton" data-id="{{$post->id}}" data-title="{{$post->title}}"><i
+                                    class="red trash outline icon"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
 
-    @stop
+    @include('posts.deleteModal')
+
+
+@stop

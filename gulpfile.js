@@ -22,7 +22,12 @@ elixir(function(mix) {
             "vendor/semantic.css"
 
         ], "public/css/all.css", "public/css")
-        .scriptsIn("public/js")
+        .scripts([
+            "vendor/jquery.js",
+            "vendor/semantic.js",
+            "app.js"
+
+        ], "public/js/all.js", "public/js")
         .version([
             "css/all.css",
             "js/all.js"

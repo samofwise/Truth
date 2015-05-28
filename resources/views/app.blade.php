@@ -17,15 +17,20 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="/Truth{{ elixir("js/all.js") }}"></script>
 </head>
 <body>
 <div class="ui segment">
     <header class="ui secondary pointing menu">
-        <a class="active item" href="#">
+        <a class="active item" href="{{action('HomeController@index')}}">
             Truth.
         </a>
         <a class="item" href="#">
             About.
+        </a>
+        <a class="item" href="{{action('PostsController@index')}}">
+            Posts. (A)
         </a>
         <a class="item" href="#">
             People. (A)
@@ -38,15 +43,16 @@
         </a>
 
         @if(!Auth::check())
-        <div class="right menu open">
-            <div class="ui dropdown label borderless">
+            <div class="borderless right menu open">
+                <div class="ui dropdown item borderless">
                 Login<i class="ui dropdown icon"></i>
-                <div class="menu transition visible">
-                    <div class="item borderless">
+
+                    <div class="borderless menu">
+                        <div class="plain item ">
                         <h4 class="ui header">Viewers</h4>
                         <div class="ui primary button">Facebook</div>
                         <div class="ui primary button">Twitter</div>
-                        <div class="divider"></div>
+                            <div class="ui divider"></div>
                         {!! Form::open(['method' => 'post', 'url' => url('auth/login')]) !!}
                         <div class="ui form">
                             <h4 class="ui header">Contributors</h4>
@@ -67,7 +73,7 @@
         @else
             <div class="right item">
                 Hey {{Auth::user()->displayName}}
-                <a href="auth/logout" class="icon item"><i class="red power icon"></i></a>
+                <a href="{{url('auth/logout')}}" class="icon item"><i class="red power icon"></i></a>
             </div>
 
         @endif
@@ -75,14 +81,15 @@
     </header>
 </div>
 
-
-@yield('content')
+<div class="ui segment">
+    @yield('content')
+</div>
 
 <!-- Scripts-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="/Truth{{ elixir("js/all.js") }}"></script>
+
 
 <script>
+
     $('.ui.dropdown').dropdown(
             {
                 action: 'nothing'

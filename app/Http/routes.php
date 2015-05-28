@@ -13,8 +13,10 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('posts', 'PostsController@index');
 Route::get('posts/create', 'PostsController@create');
 Route::get('posts/{id}/edit', 'PostsController@edit');
+Route::delete('posts/{id}/delete', 'PostsController@delete');
 Route::post('posts', 'PostsController@store');
 Route::patch('posts/{id}', 'PostsController@update');
 

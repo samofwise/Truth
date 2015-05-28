@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\Request;
 use App\Post;
@@ -15,10 +14,12 @@ class PostsController extends Controller {
         //$this->middleware('auth', ['except' => 'index']);
     }
 
-    /*public function index()
+    public function index()
     {
+        $posts = Post::all();
 
-    }*/
+        return view('posts.index', compact('posts'));
+    }
 
 	public function create()
     {
@@ -31,6 +32,13 @@ class PostsController extends Controller {
         $post = Post::findOrFail($id);
 
         return view('posts.edit', compact('post'));
+    }
+
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return redirect('/posts');
     }
 
     /**

@@ -12,12 +12,12 @@ class Post extends Model {
 
 	public function user()
 	{
-		return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User')->firstOrFail();
 	}
 
 
 	public function tags()
 	{
-		return $this->belongsToMany('App\Tag')->withTimestamps();
+        return $this->belongsToMany('App\Tag')->withTimestamps()->get();
 	}
 }
