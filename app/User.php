@@ -6,6 +6,33 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\User
+ *
+ * @property integer $id
+ * @property boolean $contributor
+ * @property string $name
+ * @property string $displayName
+ * @property string $email
+ * @property string $password
+ * @property boolean $admin
+ * @property boolean $blockedViewer
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereContributor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereDisplayName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereAdmin($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereBlockedViewer($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
+ */
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
 
@@ -26,6 +53,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $fillable = ['email', 'displayName', 'contributor'];
     protected $contributorFillable = ['name','password'];
     protected $viewerFillable = [];
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * @param array $attributes
@@ -44,6 +77,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $attributes['contributor'] = true;
         User::create($attributes);
     }
+
     public static function createViewer(array $attributes)
     {
         $attributes['contributor'] = false;
@@ -54,16 +88,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return User::where('contributor', true)->get();
     }
+
     public static function viewers()
     {
         return User::where('contributor', false)->get();
     }
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
 
     public function posts()
     {
