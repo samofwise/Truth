@@ -99,7 +99,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\Post');
     }
 
-
+    public function type()
+    {
+        return $this->contributor ?
+            $this->admin ? "Admin" : "Contributor"
+            : "Viewer";
+    }
 
 
 }

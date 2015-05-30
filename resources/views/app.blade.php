@@ -32,7 +32,7 @@
         <a class="item" href="{{action('PostsController@index')}}">
             Posts. (A)
         </a>
-        <a class="item" href="#">
+        <a class="item" href="{{action('UsersController@index')}}">
             People. (A)
         </a>
         <a class="item" href="#">

@@ -20,6 +20,8 @@ Route::delete('posts/{id}/delete', 'PostsController@delete');
 Route::post('posts', 'PostsController@store');
 Route::patch('posts/{id}', 'PostsController@update');
 
+Route::get('people', 'UsersController@index');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

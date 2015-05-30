@@ -1,18 +1,24 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\User;
 
-use Illuminate\Http\Request;
-
-class PeopleController extends Controller {
+class UsersController extends Controller
+{
 
 	public function index()
+    {
+        $users = User::all();
+
+        return view('users.index', compact('users'));
+    }
+
+    public function create($email)
     {
 
     }
 
-    public function create($email)
+    public function edit($id)
     {
 
     }
@@ -21,5 +27,6 @@ class PeopleController extends Controller {
     {
 
     }
+
 
 }
