@@ -1,8 +1,6 @@
 <?php
 
-use App\Contributor;
 use App\User;
-use App\Viewer;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -32,7 +30,7 @@ class UsersTableSeeder extends Seeder
         //Create Viewers
         User::createViewer(['displayName' => $faker->firstNameMale, 'email' => 'viewer@truth.com']);
         for ($i = 1; $i <= 5; $i++) {
-            Viewer::createViewer(['displayName' => $faker->firstNameMale, 'email' => $faker->email]);
+            User::createViewer(['displayName' => $faker->firstNameMale, 'email' => $faker->email]);
         }
     }
 }
